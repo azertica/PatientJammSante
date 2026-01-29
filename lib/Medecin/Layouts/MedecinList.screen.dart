@@ -81,10 +81,13 @@ class Medecinlistscreen extends StatelessWidget {
               )
             ),
             SizedBox(
-              height: heightScreen * 0.04,
-            ),
-            Container(
-              child: Text("Médecins recommandés"),
+              width: widthScreen,
+              child: Row(
+                children: [
+                  SizedBox(width: widthScreen * 0.08),
+                  Text("Médecins recommandés", style: TextStyle(color: ThemeColor().primaryColor, fontSize: 18, fontWeight: FontWeight.w500))
+                ],
+              ),
             )
           ],
         )
