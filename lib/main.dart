@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:patient_jamm_sante/Medecin/Layouts/MedecinListScreen.dart';
+import 'package:patient_jamm_sante/Medecin/Layouts/MedecinList.screen.dart';
 import 'Core/Theme.dart';
 
 void main() {

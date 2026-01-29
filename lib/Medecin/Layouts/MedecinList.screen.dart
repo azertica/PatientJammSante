@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:patient_jamm_sante/Core/Theme.dart';
-import 'package:patient_jamm_sante/Medecin/Widgets/IconBagdeWidget.dart';
-import 'package:patient_jamm_sante/Medecin/Widgets/SearchBarWidget.dart';
+import 'package:patient_jamm_sante/Medecin/Widgets/IconBagde.widget.dart';
+import 'package:patient_jamm_sante/Medecin/Widgets/SearchBar.widget.dart';
+import 'package:patient_jamm_sante/Medecin/Widgets/Speciality.widget.dart';
+import '../Providers/Speciality.provider.dart';
+import '../Models/Speciality.model.dart';
 
 
 class Medecinlistscreen extends StatelessWidget {
@@ -11,6 +14,7 @@ class Medecinlistscreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final heightScreen = MediaQuery.of(context).size.height;
     final widthScreen = MediaQuery.of(context).size.width;
+    List<Speciality> specialities = SpecialityProvider().specialities; 
 
     return SafeArea(
       child: SizedBox(
@@ -59,6 +63,28 @@ class Medecinlistscreen extends StatelessWidget {
                   ],
                 ),
               ),
+            ),
+            SizedBox(
+              height: heightScreen * 0.02,
+            ),
+            //Don't forget to put an onTap on the specialityWidget
+            SizedBox(
+              height: heightScreen * 0.2,
+              child: ListView.builder(
+                padding: EdgeInsets.only(left: widthScreen * 0.1),
+                scrollDirection: Axis.horizontal,
+                itemCount: specialities.length,
+                itemBuilder: (context, index){
+                  final speciality = specialities[index];
+                  return SpecialityWidget(speciality: speciality);
+                }
+              )
+            ),
+            SizedBox(
+              height: heightScreen * 0.04,
+            ),
+            Container(
+              child: Text("Médecins recommandés"),
             )
           ],
         )
