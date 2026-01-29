@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "name": "Médecine Générale",
+    "icon": "stethoscope"
+  },
+  {
+    "id": 2,
+    "name": "Cardiologie",
+    "icon": "favorite"
+  },
+  {
+    "id": 3,
+    "name": "Dentisterie",
+    "icon": "medical_services"
+  },
+  {
+    "id": 4,
+    "name": "Pédiatrie",
+    "icon": "child_care"
+  },
+  {
+    "id": 5,
+    "name": "Gynécologie",
+    "icon": "pregnant_woman"
+  },
+  {
+    "id": 6,
+    "name": "Ophtalmologie",
+    "icon": "visibility"
+  },
+  {
+    "id": 7,
+    "name": "Dermatologie",
+    "icon": "spa"
+  },
+  {
+    "id": 8,
+    "name": "Neurologie",
+    "icon": "psychology"
+  },
+  {
+    "id": 9,
+    "name": "Orthopédie",
+    "icon": "accessibility_new"
+  },
+  {
+    "id": 10,
+    "name": "ORL",
+    "icon": "hearing"
+  }
+]
