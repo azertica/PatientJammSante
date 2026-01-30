@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:patient_jamm_sante/Medecin/Layouts/HomePageScreen.dart';
+import 'package:patient_jamm_sante/Share/HomePageScreen.dart';
 
 void main() {
   runApp(const MyApp());
