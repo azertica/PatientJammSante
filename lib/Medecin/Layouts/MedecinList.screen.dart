@@ -3,6 +3,7 @@ import 'package:patient_jamm_sante/Core/Theme.dart';
 import 'package:patient_jamm_sante/Medecin/Widgets/IconBagde.widget.dart';
 import 'package:patient_jamm_sante/Medecin/Widgets/SearchBar.widget.dart';
 import 'package:patient_jamm_sante/Medecin/Widgets/Speciality.widget.dart';
+import 'package:patient_jamm_sante/Medecin/Widgets/medecinList.widget.dart';
 import '../Providers/Speciality.provider.dart';
 import '../Models/Speciality.model.dart';
 
@@ -88,6 +89,10 @@ class Medecinlistscreen extends StatelessWidget {
                   Text("Médecins recommandés", style: TextStyle(color: ThemeColor().primaryColor, fontSize: 18, fontWeight: FontWeight.w500))
                 ],
               ),
+            ),
+            SizedBox(
+              height: heightScreen,
+              child: MedecinListWidget()
             )
           ],
         )
