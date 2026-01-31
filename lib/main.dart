@@ -13,10 +13,11 @@ Future<void> main() async {
       // Setting to 1.0 will profile 100% of sampled transactions:
       options.profilesSampleRate = 1.0;
     },
-    appRunner: () => runApp(SentryWidget(child: const MyApp())),
+    appRunner: (){
+      logAppStart();
+      runApp(SentryWidget(child: const MyApp()));
+    }
   );
-  // TODO: Remove this line after sending the first sample event to sentry.
-  await Sentry.captureException(Exception('This is a sample exception.'));
 }
 
 class MyApp extends StatelessWidget {
@@ -30,4 +31,14 @@ class MyApp extends StatelessWidget {
       home: HomePageScreen(),
     );
   }
+}
+
+void logAppStart(){
+  Sentry.addBreadcrumb(
+    Breadcrumb(
+      message: 'App Started',
+      level: SentryLevel.info,
+      timestamp: DateTime.now()
+    )
+  );
 }
