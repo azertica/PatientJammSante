@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:patient_jamm_sante/Core/Theme.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
   final int currentIndex;
@@ -36,7 +37,55 @@ class CustomBottomNavBar extends StatelessWidget {
     final bool isActive = currentIndex == index;
 
     return GestureDetector(
-      onTap: () => onTap(index),
+      onTap: (){
+        onTap(index);
+        if(index == 0){
+          Sentry.addBreadcrumb(
+            Breadcrumb(
+              message: "Navigated to HomeScreen",
+              level: SentryLevel.info,
+              category: 'navigation',
+              timestamp: DateTime.now()
+            )
+          );
+        } else if(index == 1){
+          Sentry.addBreadcrumb(
+            Breadcrumb(
+              message: "Navigated to DoctorScreen",
+              level: SentryLevel.info,
+              category: 'navigation',
+              timestamp: DateTime.now()
+            )
+          );
+        } else if(index == 2) {
+          Sentry.addBreadcrumb(
+            Breadcrumb(
+              message: "Navigated to AgendaScreen",
+              level: SentryLevel.info,
+              category: 'navigation',
+              timestamp: DateTime.now()
+            )
+          );
+        } else if(index == 3){
+          Sentry.addBreadcrumb(
+            Breadcrumb(
+              message: "Navigated to MessageScreen",
+              level: SentryLevel.info,
+              category: 'navigation',
+              timestamp: DateTime.now()
+            )
+          );
+        } else if(index == 4) {
+          Sentry.addBreadcrumb(
+            Breadcrumb(
+              message: "Navigated to SettingScreen",
+              level: SentryLevel.info,
+              category: 'navigation',
+              timestamp: DateTime.now()
+            )
+          );
+        }
+      },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
