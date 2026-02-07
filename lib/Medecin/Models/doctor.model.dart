@@ -4,29 +4,29 @@ import 'tarif.model.dart';
 
 class Doctor {
   final String elemId;
-  final String name;
-  final String fullName;
-  final String specialty;
-  final String category;
-  final String address;
-  final String fullAddress;
-  final String distance;
-  final String photoUrl;
-  final String accessInfo;
-  final String presentation;
+  final String? name;
+  final String? fullName;
+  final String? specialty;
+  final String? category;
+  final String? address;
+  final String? fullAddress;
+  final String? distance;
+  final String? photoUrl;
+  final String? accessInfo;
+  final String? presentation;
 
-  final double latitude;
-  final double longitude;
+  final double? latitude;
+  final double? longitude;
 
-  final List<String> phones;
-  final List<String> languages;
-  final List<String> expertises;
-  final List<String> galleryImages;
-  final List<String> paymentMethods;
+  final List<String>? phones;
+  final List<String>? languages;
+  final List<String>? expertises;
+  final List<String>? galleryImages;
+  final List<String>? paymentMethods;
 
-  final List<Formation> formations;
-  final List<Tarif> tarifs;
-  final Horaires horaires;
+  final List<Formation>? formations;
+  final List<Tarif>? tarifs;
+  final Horaires? horaires;
 
   Doctor({
     required this.elemId,
@@ -65,8 +65,12 @@ class Doctor {
       photoUrl: json['photo_url'],
       accessInfo: json['access_info'],
       presentation: json['presentation'],
-      latitude: (json['latitude'] as num).toDouble(),
-      longitude: (json['longitude'] as num).toDouble(),
+      latitude: json['latitude'] != null
+          ? (json['latitude'] as num).toDouble()
+          : null,
+      longitude: json['longitude'] != null
+          ? (json['longitude'] as num).toDouble()
+          : null,
 
       phones: List<String>.from(json['phones'] ?? []),
       languages: List<String>.from(json['languages'] ?? []),
@@ -74,15 +78,15 @@ class Doctor {
       galleryImages: List<String>.from(json['gallery_images'] ?? []),
       paymentMethods: List<String>.from(json['payment_methods'] ?? []),
 
-      formations: (json['formations'] as List)
-          .map((e) => Formation.fromJson(e))
+      formations: (json['formations'] as List?)
+          ?.map((e) => Formation.fromJson(e))
           .toList(),
-
-      tarifs: (json['tarifs'] as List)
-          .map((e) => Tarif.fromJson(e))
+      tarifs: (json['tarifs'] as List?)
+          ?.map((e) => Tarif.fromJson(e))
           .toList(),
-
-      horaires: Horaires.fromJson(json['horaires']),
+      horaires: json['horaires'] != null
+          ? Horaires.fromJson(json['horaires'])
+          : null,
     );
   }
 }

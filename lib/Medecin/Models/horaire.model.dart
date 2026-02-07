@@ -1,11 +1,11 @@
 class Horaires {
-  final String lundi;
-  final String mardi;
-  final String mercredi;
-  final String jeudi;
-  final String vendredi;
-  final String samedi;
-  final String dimanche;
+  final String? lundi;
+  final String? mardi;
+  final String? mercredi;
+  final String? jeudi;
+  final String? vendredi;
+  final String? samedi;
+  final String? dimanche;
 
   Horaires({
     required this.lundi,

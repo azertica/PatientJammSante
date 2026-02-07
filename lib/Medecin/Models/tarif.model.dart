@@ -1,6 +1,6 @@
 class Tarif {
-  final String name;
-  final String price;
+  final String? name;
+  final String? price;
 
   Tarif({
     required this.name,

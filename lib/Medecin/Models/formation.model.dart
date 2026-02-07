@@ -1,6 +1,6 @@
 class Formation {
-  final String year;
-  final String description;
+  final String? year;
+  final String? description;
 
   Formation({
     required this.year,
