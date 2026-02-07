@@ -10,7 +10,6 @@ class medecinCardWidget extends StatelessWidget {
   final String photoUrl;
   final Color? color;
 
-
   const medecinCardWidget({
     super.key,
     required this.fullname,
@@ -18,7 +17,7 @@ class medecinCardWidget extends StatelessWidget {
     required this.distance,
     required this.photoUrl,
     required this.fullAddress,
-    this.color
+    this.color,
   });
 
   @override
@@ -27,34 +26,59 @@ class medecinCardWidget extends StatelessWidget {
       color: color,
       elevation: 4,
       child: Padding(
-        padding: EdgeInsetsGeometry.all(16), //Make after a non constant size
+        padding: const EdgeInsets.all(16),
         child: Column(
           children: [
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
-                  // width: , Make after a non constant size
-                  child: Image.network("${photoUrl}"),
+                // Waiting for connecting the api and db
+                // SizedBox(
+                //   height: 16,
+                //   width: 16,
+                //   child: Image.network("${photoUrl}")
+                // ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(fullname,
+                          style: TextStyle(color: ThemeColor().primaryColor, fontSize: 18)),
+                      Text(specialty,
+                          style: TextStyle(
+                              color: ThemeColor().thirdColor)),
+                      const SizedBox(height: 4),
+                      Row(
+                        children: [
+                          Text(distance,
+                              style: TextStyle(
+                                  color:
+                                      ThemeColor().secondaryColor)),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Text(
+                              fullAddress,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                  color:
+                                      ThemeColor().secondaryColor),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-                Column(
-                  children: [
-                    Text("${fullname}", style: TextStyle(color: ThemeColor().primaryColor)),
-                    Text("${specialty}", style: TextStyle(color: ThemeColor().thirdColor)),
-                    Row(
-                      children: [
-                        Text("${distance}", style: TextStyle(color: ThemeColor().secondaryColor)),
-                        Text("${fullAddress}", style: TextStyle(color: ThemeColor().secondaryColor)),
-                      ]
-                    )
-                  ]
-                )
-              ]
+              ],
             ),
+            const SizedBox(height: 12),
             ElevatedButton(
-              onPressed: () => print('Redirect to doctor details'), 
-              child: Text("Prendre rendez-vous", style: TextStyle(color: ThemeColor().thirdColor))
-            )
-          ]
+              onPressed: () {},
+              child: const Text("Prendre rendez-vous"),
+            ),
+          ],
         ),
       ),
     );
