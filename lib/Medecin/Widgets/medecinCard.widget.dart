@@ -43,27 +43,15 @@ class medecinCardWidget extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(fullname,
-                          style: TextStyle(color: ThemeColor().primaryColor, fontSize: 18)),
-                      Text(specialty,
-                          style: TextStyle(
-                              color: ThemeColor().thirdColor)),
+                      Text(fullname, style: TextStyle(color: ThemeColor().primaryColor, fontSize: 18)),
+                      Text(specialty, style: TextStyle(color: ThemeColor().thirdColor)),
                       const SizedBox(height: 4),
                       Row(
                         children: [
-                          Text(distance,
-                              style: TextStyle(
-                                  color:
-                                      ThemeColor().secondaryColor)),
+                          Text(distance, style: TextStyle(color:ThemeColor().secondaryColor)),
                           const SizedBox(width: 8),
                           Expanded(
-                            child: Text(
-                              fullAddress,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                  color:
-                                      ThemeColor().secondaryColor),
+                            child: Text(fullAddress, maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(color:ThemeColor().secondaryColor),
                             ),
                           ),
                         ],

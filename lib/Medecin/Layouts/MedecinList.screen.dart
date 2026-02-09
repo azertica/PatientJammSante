@@ -5,6 +5,7 @@ import 'package:patient_jamm_sante/Medecin/Widgets/SearchBar.widget.dart';
 import 'package:patient_jamm_sante/Medecin/Widgets/Speciality.widget.dart';
 import 'package:patient_jamm_sante/Medecin/Widgets/medecinCard.widget.dart';
 import 'package:patient_jamm_sante/Medecin/Widgets/medecinList.widget.dart';
+import 'package:patient_jamm_sante/Share/ChatFloatingButton.widget.dart';
 import '../Providers/Speciality.provider.dart';
 import '../Models/Speciality.model.dart';
 
@@ -91,6 +92,10 @@ class Medecinlistscreen extends StatelessWidget {
                 ],
               ),
             ),
+            SizedBox(
+              height: heightScreen * 0.025,
+            ),
+            ChatFloatingButton(),
             // SizedBox(
             //   height: heightScreen / 2,
             //   child: medecinCardWidget(fullname: "Cheikh Ahmed Tidiane Cisse", specialty: "Blockchain Dev", distance: "2.3km", photoUrl: "https://imgs.search.brave.com/y77qLn-Ol-l63hvglz8GcXNBFwVbp9Z_bERcbe9kArk/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/Y29vbC1waWMtb2Yt/bWVsaW9kYXMtZnIt/djAtZDFlbXptYjA4/aGVhMS5qcGc_d2lk/dGg9NjQwJmNyb3A9/c21hcnQmYXV0bz13/ZWJwJnM9YzMwNzU2/YjBhOTNmMTEzNzI0/NDRmMmJhNmMzYTg1/YmMwOTE5NDBiMA", fullAddress: "Rue 34, Gilbraltar 2"),
