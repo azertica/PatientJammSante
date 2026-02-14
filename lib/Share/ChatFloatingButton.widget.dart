@@ -6,16 +6,10 @@ class ChatFloatingButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final heightScreen = MediaQuery.of(context).size.height;
-    final widthScreen = MediaQuery.of(context).size.width;
-
-    return Container(
-      width: widthScreen * 0.5,
-      height: heightScreen * 0.08,      
-      child: FloatingActionButton(
-        onPressed: () {print("GO TO MESSAGE PAGE");},
-        child: const Icon(Icons.message),
-      ),
+    return FloatingActionButton(
+      backgroundColor: ThemeColor().secondaryBgColor,
+      onPressed: () {print("GO TO MESSAGE PAGE");},
+      child: const Icon(Icons.message, color: Color.fromARGB(255, 255, 255, 255)),
     );
   }
 }

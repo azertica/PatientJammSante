@@ -24,8 +24,7 @@ class CustomBottomNavBar extends StatelessWidget {
             _navItemAnimated(icon: Icons.grid_view, label: "Home", index: 0),
             _navItemAnimated(icon: Icons.medical_services, label: "Médecins", index: 1),
             _navItemAnimated(icon: Icons.calendar_today, label: "Agenda", index: 2),
-            _navItemAnimated(icon: Icons.chat_bubble_outline, label: "Messages", index: 3),
-            _navItemAnimated(icon: Icons.settings, label: "Settings", index: 4),
+            _navItemAnimated(icon: Icons.settings, label: "Settings", index: 3),
           ],
         ),
       ),
@@ -69,15 +68,6 @@ class CustomBottomNavBar extends StatelessWidget {
           Sentry.addBreadcrumb(
             Breadcrumb(
               message: "Navigated to MessageScreen",
-              level: SentryLevel.info,
-              category: 'navigation',
-              timestamp: DateTime.now()
-            )
-          );
-        } else if(index == 4) {
-          Sentry.addBreadcrumb(
-            Breadcrumb(
-              message: "Navigated to SettingScreen",
               level: SentryLevel.info,
               category: 'navigation',
               timestamp: DateTime.now()
