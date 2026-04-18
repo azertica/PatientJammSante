@@ -16,4 +16,40 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get noFullName => 'Nom non disponible';
+
+  @override
+  String get findDoctor => 'Trouver un médecin';
+
+  @override
+  String get specialities => 'Spécialités';
+
+  @override
+  String get seeAll => 'Tout voir';
+
+  @override
+  String get recommendedDoctors => 'Médecins recommandés';
+
+  @override
+  String get searchHint => 'Rechercher un médecin, spécialité...';
+
+  @override
+  String get noSpeciality => 'Spécialité non disponible';
+
+  @override
+  String get noAddress => 'Adresse non disponible';
+
+  @override
+  String get homePage => 'Accueil';
+
+  @override
+  String get doctors => 'Médecins';
+
+  @override
+  String get agenda => 'Agenda';
+
+  @override
+  String get settings => 'Paramètres';
+
+  @override
+  String get doctorLoadingError => 'Une erreur est survenue lors du chargement des médecins. Veuillez réessayer plus tard.';
 }

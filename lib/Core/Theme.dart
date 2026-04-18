@@ -10,4 +10,7 @@ class ThemeColor {
   final primaryColor = const Color.fromARGB(255, 244, 249, 253);
   final secondaryColor = const Color.fromARGB(255, 148, 163, 187);
   final thirdColor = const Color.fromARGB(255, 34, 157, 182);
+
+  //Icon
+  final FloatingIconColor = const Color.fromARGB(255, 255, 255, 255);
 }

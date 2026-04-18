@@ -16,4 +16,40 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noFullName => 'No Full Name';
+
+  @override
+  String get findDoctor => 'Find a doctor';
+
+  @override
+  String get specialities => 'Specialities';
+
+  @override
+  String get seeAll => 'See all';
+
+  @override
+  String get recommendedDoctors => 'Recommended doctors';
+
+  @override
+  String get searchHint => 'Search for a doctor, speciality...';
+
+  @override
+  String get noSpeciality => 'No Speciality';
+
+  @override
+  String get noAddress => 'No Address';
+
+  @override
+  String get homePage => 'Home';
+
+  @override
+  String get doctors => 'Doctors';
+
+  @override
+  String get agenda => 'Agenda';
+
+  @override
+  String get settings => 'Settings';
+
+  @override
+  String get doctorLoadingError => 'An error occurred while loading doctors. Please try again later.';
 }

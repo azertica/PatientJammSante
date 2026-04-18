@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:patient_jamm_sante/Core/Theme.dart';
+import 'package:patient_jamm_sante/l10n/app_localizations.dart';
 
-
-class medecinCardWidget extends StatelessWidget {
+class MedecinCardWidget extends StatelessWidget {
   final String fullname;
   final String specialty;
   final String distance;
@@ -10,7 +10,7 @@ class medecinCardWidget extends StatelessWidget {
   final String photoUrl;
   final Color? color;
 
-  const medecinCardWidget({
+  const MedecinCardWidget({
     super.key,
     required this.fullname,
     required this.specialty,
@@ -22,6 +22,7 @@ class medecinCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Card(
       color: color,
       elevation: 4,
@@ -36,22 +37,38 @@ class medecinCardWidget extends StatelessWidget {
                 // SizedBox(
                 //   height: 16,
                 //   width: 16,
-                //   child: Image.network("${photoUrl}")
+                //   child: Image.network(photoUrl),
                 // ),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(fullname, style: TextStyle(color: ThemeColor().primaryColor, fontSize: 18)),
-                      Text(specialty, style: TextStyle(color: ThemeColor().thirdColor)),
+                      Text(
+                        fullname,
+                        style: TextStyle(
+                          color: ThemeColor().primaryColor,
+                          fontSize: 18,
+                        ),
+                      ),
+                      Text(
+                        specialty,
+                        style: TextStyle(color: ThemeColor().thirdColor),
+                      ),
                       const SizedBox(height: 4),
                       Row(
                         children: [
-                          Text(distance, style: TextStyle(color:ThemeColor().secondaryColor)),
+                          Text(
+                            distance,
+                            style: TextStyle(color: ThemeColor().secondaryColor),
+                          ),
                           const SizedBox(width: 8),
                           Expanded(
-                            child: Text(fullAddress, maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(color:ThemeColor().secondaryColor),
+                            child: Text(
+                              fullAddress,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(color: ThemeColor().secondaryColor),
                             ),
                           ),
                         ],
@@ -64,7 +81,7 @@ class medecinCardWidget extends StatelessWidget {
             const SizedBox(height: 12),
             ElevatedButton(
               onPressed: () {},
-              child: const Text("Prendre rendez-vous"),
+              child: Text(l10n.takeAppointment),
             ),
           ],
         ),

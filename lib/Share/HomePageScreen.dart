@@ -36,7 +36,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
         currentIndex: currentIndex,
         onTap: navigateBottomNavBar,
       ),
-      floatingActionButton: ChatFloatingButton(),
+      floatingActionButton: const ChatFloatingButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }

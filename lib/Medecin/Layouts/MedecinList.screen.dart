@@ -1,114 +1,195 @@
 import 'package:flutter/material.dart';
 import 'package:patient_jamm_sante/Core/Theme.dart';
+import 'package:patient_jamm_sante/Medecin/Models/doctor.model.dart';
+import 'package:patient_jamm_sante/Medecin/Providers/medecin.service.dart';
 import 'package:patient_jamm_sante/Medecin/Widgets/IconBagde.widget.dart';
 import 'package:patient_jamm_sante/Medecin/Widgets/SearchBar.widget.dart';
 import 'package:patient_jamm_sante/Medecin/Widgets/Speciality.widget.dart';
 import 'package:patient_jamm_sante/Medecin/Widgets/medecinCard.widget.dart';
-import 'package:patient_jamm_sante/Medecin/Widgets/medecinList.widget.dart';
-import 'package:patient_jamm_sante/Share/ChatFloatingButton.widget.dart';
-import '../Providers/Speciality.provider.dart';
-import '../Models/Speciality.model.dart';
+import 'package:patient_jamm_sante/Medecin/Providers/Speciality.provider.dart';
+import 'package:patient_jamm_sante/Medecin/Models/Speciality.model.dart';
+import 'package:patient_jamm_sante/l10n/app_localizations.dart';
 
-
-class Medecinlistscreen extends StatelessWidget {
+class Medecinlistscreen extends StatefulWidget {
   const Medecinlistscreen({super.key});
 
   @override
+  State<Medecinlistscreen> createState() => _MedecinlistscreenState();
+}
+
+class _MedecinlistscreenState extends State<Medecinlistscreen> {
+  final DoctorService _service = DoctorService();
+  late Future<List<Doctor>> _futureDoctors;
+  final List<Speciality> specialities = SpecialityProvider().specialities;
+
+  @override
+  void initState() {
+    super.initState();
+    _futureDoctors = _service.loadDoctors();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final heightScreen = MediaQuery.of(context).size.height;
+    final l10n = AppLocalizations.of(context)!;
     final widthScreen = MediaQuery.of(context).size.width;
-    List<Speciality> specialities = SpecialityProvider().specialities; 
 
     return SafeArea(
-      child: SizedBox(
-        height: heightScreen,
-        // I should use listViewBuilder instead of it
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(
-                height: heightScreen * 0.03,
-              ),
-              Row( 
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  SizedBox(
-                    width: widthScreen / 1.5,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        IconBadgeWidget(icon: Icons.medical_services, bgColor: ThemeColor().secondaryBgColor),
-                        Text("Trouver un médecin", style: TextStyle(color: ThemeColor().primaryColor, fontSize: 18, fontWeight: FontWeight.w500))                      
-                      ],
-                    ),
-                  ),
-                  Icon(Icons.notifications, color: ThemeColor().secondaryColor)
-                ],
-              ),
-              SizedBox(
-                height: heightScreen * 0.02,
-              ),
-              Center(
-                child: SizedBox(
-                  width: widthScreen * 0.9,
-                  child: SearchBarWidget()
-                ),
-              ),
-              SizedBox(
-                height: heightScreen * 0.02,
-              ),
-              Center(
-                child: SizedBox(
-                  width: widthScreen * 0.85,
+      child: FutureBuilder<List<Doctor>>(
+        future: _futureDoctors,
+        builder: (context, snapshot) {
+          // Doctors data
+          final isLoading = snapshot.connectionState == ConnectionState.waiting;
+          final hasError = snapshot.hasError;
+          final doctors = snapshot.data ?? [];
+
+          return CustomScrollView(
+            slivers: [
+
+              // ── Header ──────────────────────────────────────────
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text("Spécialités", style: TextStyle(color: ThemeColor().primaryColor, fontSize: 18, fontWeight: FontWeight.w500)),
-                      Text("Tout voir", style: TextStyle(color: ThemeColor().thirdColor, fontSize: 18, fontWeight: FontWeight.w500))//After a text button
+                      SizedBox(
+                        width: widthScreen / 1.5,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            IconBadgeWidget(
+                              icon: Icons.medical_services,
+                              bgColor: ThemeColor().secondaryBgColor,
+                            ),
+                            Text(
+                              l10n.findDoctor,
+                              style: TextStyle(
+                                color: ThemeColor().primaryColor,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Icon(Icons.notifications, color: ThemeColor().secondaryColor),
                     ],
                   ),
                 ),
               ),
-              SizedBox(
-                height: heightScreen * 0.02,
-              ),
-              //Don't forget to put an onTap on the specialityWidget
-              SizedBox(
-                height: heightScreen * 0.2,
-                child: ListView.builder(
-                  padding: EdgeInsets.only(left: widthScreen * 0.1),
-                  scrollDirection: Axis.horizontal,
-                  itemCount: specialities.length,
-                  itemBuilder: (context, index){
-                    final speciality = specialities[index];
-                    return SpecialityWidget(speciality: speciality);
-                  }
-                )
-              ),
-              SizedBox(
-                width: widthScreen,
-                child: Row(
-                  children: [
-                    SizedBox(width: widthScreen * 0.08),
-                    Text("Médecins recommandés", style: TextStyle(color: ThemeColor().primaryColor, fontSize: 18, fontWeight: FontWeight.w500))
-                  ],
+
+              // ── SearchBar ────────────────────────────────────────
+              SliverToBoxAdapter(
+                child: Center(
+                  child: SizedBox(
+                    width: widthScreen * 0.9,
+                    child: const SearchBarWidget(),
+                  ),
                 ),
               ),
-              SizedBox(
-                height: heightScreen * 0.025,
+
+              const SliverToBoxAdapter(child: SizedBox(height: 16)),
+
+              // ── Spécialités header ───────────────────────────────
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: widthScreen * 0.075),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        l10n.specialities,
+                        style: TextStyle(
+                          color: ThemeColor().primaryColor,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Text(
+                        l10n.seeAll,
+                        style: TextStyle(
+                          color: ThemeColor().thirdColor,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
-              // SizedBox(
-              //   height: heightScreen / 2,
-              //   child: medecinCardWidget(fullname: "Cheikh Ahmed Tidiane Cisse", specialty: "Blockchain Dev", distance: "2.3km", photoUrl: "https://imgs.search.brave.com/y77qLn-Ol-l63hvglz8GcXNBFwVbp9Z_bERcbe9kArk/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/Y29vbC1waWMtb2Yt/bWVsaW9kYXMtZnIt/djAtZDFlbXptYjA4/aGVhMS5qcGc_d2lk/dGg9NjQwJmNyb3A9/c21hcnQmYXV0bz13/ZWJwJnM9YzMwNzU2/YjBhOTNmMTEzNzI0/NDRmMmJhNmMzYTg1/YmMwOTE5NDBiMA", fullAddress: "Rue 34, Gilbraltar 2"),
-              // ),
-              SizedBox(
-                height: heightScreen,
-                child: MedecinListWidget()
-              )
+
+              const SliverToBoxAdapter(child: SizedBox(height: 12)),
+
+              // ── Spécialités liste horizontale ────────────────────
+              SliverToBoxAdapter(
+                child: SizedBox(
+                  height: 110,
+                  child: ListView.builder(
+                    padding: EdgeInsets.only(left: widthScreen * 0.08),
+                    scrollDirection: Axis.horizontal,
+                    itemCount: specialities.length,
+                    itemBuilder: (context, index) {
+                      return SpecialityWidget(speciality: specialities[index]);
+                    },
+                  ),
+                ),
+              ),
+
+              const SliverToBoxAdapter(child: SizedBox(height: 16)),
+
+              // ── Médecins recommandés header ──────────────────────
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: EdgeInsets.only(left: widthScreen * 0.08),
+                  child: Text(
+                    l10n.recommendedDoctors,
+                    style: TextStyle(
+                      color: ThemeColor().primaryColor,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ),
+
+              const SliverToBoxAdapter(child: SizedBox(height: 12)),
+
+              // ── États : loading / error / liste ─────────────────
+              if (isLoading)
+                const SliverFillRemaining(
+                  child: Center(child: CircularProgressIndicator()),
+                )
+              else if (hasError)
+                SliverFillRemaining(
+                  child: Center(
+                    child: Text(
+                      l10n.doctorLoadingError,
+                      style: TextStyle(color: ThemeColor().primaryColor),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                )
+              else
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      final doctor = doctors[index];
+                      return MedecinCardWidget(
+                        color: ThemeColor().thirdBgColor,
+                        fullname: doctor.fullName ?? l10n.noFullName,
+                        specialty: doctor.specialty ?? l10n.noSpeciality,
+                        distance: doctor.distance ?? '0',
+                        photoUrl: doctor.photoUrl ?? '',
+                        fullAddress: doctor.fullAddress ?? l10n.noAddress,
+                      );
+                    },
+                    childCount: doctors.length,
+                  ),
+                ),
             ],
-          ),
-        )
-      )
+          );
+        },
+      ),
     );
   }
 }

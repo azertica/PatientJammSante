@@ -1,27 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:patient_jamm_sante/Core/Theme.dart';
+import 'package:patient_jamm_sante/l10n/app_localizations.dart';
 
 class SearchBarWidget extends StatelessWidget {
   const SearchBarWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return SearchBar(
       leading: Icon(Icons.search, color: ThemeColor().secondaryColor),
-      hintText: "Rechercher un médecin, specialitée...",
-      hintStyle: MaterialStateProperty.all(
+      hintText: l10n.searchHint,
+      hintStyle: WidgetStateProperty.all(
         TextStyle(color: ThemeColor().secondaryColor),
       ),
-      textStyle: MaterialStateProperty.all(
+      textStyle: WidgetStateProperty.all(
         TextStyle(color: ThemeColor().primaryColor),
       ),
-      backgroundColor: MaterialStateProperty.all(
+      backgroundColor: WidgetStateProperty.all(
         ThemeColor().thirdBgColor,
       ),
-      shape: MaterialStateProperty.all(
+      shape: WidgetStateProperty.all(
         RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(18)
-        )
+          borderRadius: BorderRadius.circular(18),
+        ),
       ),
     );
   }

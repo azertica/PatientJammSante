@@ -3,6 +3,7 @@ import 'package:patient_jamm_sante/Core/Theme.dart';
 import 'package:patient_jamm_sante/Medecin/Models/doctor.model.dart';
 import 'package:patient_jamm_sante/Medecin/Providers/medecin.service.dart';
 import 'package:patient_jamm_sante/Medecin/Widgets/medecinCard.widget.dart';
+import 'package:patient_jamm_sante/l10n/app_localizations.dart';
 
 class MedecinListWidget extends StatefulWidget {
   const MedecinListWidget({super.key});
@@ -23,6 +24,7 @@ class _MedecinListWidgetState extends State<MedecinListWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return FutureBuilder<List<Doctor>>(
       future: _futureDoctors,
       builder: (context, snapshot) {
@@ -31,7 +33,13 @@ class _MedecinListWidgetState extends State<MedecinListWidget> {
         }
 
         if (snapshot.hasError) {
-          return Center(child: Text('Erreur: ${snapshot.error}', style: TextStyle(color: ThemeColor().primaryColor)));
+          return Center(
+            child: Text(
+              l10n.doctorLoadingError,
+              style: TextStyle(color: ThemeColor().primaryColor),
+              textAlign: TextAlign.center,
+            ),
+          );
         }
 
         final doctors = snapshot.data!;
@@ -40,13 +48,13 @@ class _MedecinListWidgetState extends State<MedecinListWidget> {
           itemCount: doctors.length,
           itemBuilder: (context, index) {
             final doctor = doctors[index];
-            return medecinCardWidget(
+            return MedecinCardWidget(
               color: ThemeColor().thirdBgColor,
-              fullname: doctor.fullName ?? 'No FullName',
-              specialty: doctor.specialty ?? 'No Speciality',
+              fullname: doctor.fullName ?? l10n.noFullName,
+              specialty: doctor.specialty ?? l10n.noSpeciality,
               distance: doctor.distance?.toString() ?? '0',
-              photoUrl: doctor.photoUrl ?? 'https://imgs.search.brave.com/rqDVlrVXh66oYREFOpP47AoZsTIu3V531RLEEA0dPlo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3RpL3ZlY3Rl/dXItbGlicmUvdDIv/NjgzODQ1OS1ub2ly/LWFic3RyYWl0LXRl/eHR1cmUtZ3J1bmdl/LXdlYi1mb25kLXZl/Y3RldXItdmVjdG9y/aWVsLmpwZw',
-              fullAddress: doctor.fullAddress ?? 'No FullAddress',
+              photoUrl: doctor.photoUrl ?? '',
+              fullAddress: doctor.fullAddress ?? l10n.noAddress,
             );
           },
         );

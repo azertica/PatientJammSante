@@ -2,21 +2,28 @@ import 'package:flutter/material.dart';
 
 class Dimension{
   // Spacing
-  static const double paddingXS = 4.0;
-  static const double paddingS = 8.0;
-  static const double paddingM = 16.0;
-  static const double paddingL = 24.0;
+  final double paddingXS = 4.0;
+  final double paddingS = 8.0;
+  final double paddingSSM = 10.0;
+  final double paddingSM = 12.0;
+  final double paddingM = 16.0;
+  final double paddingL = 24.0;
 
   // Radius
-  static const double radiusS = 8.0;
-  static const double radiusM = 16.0;
-  static const double radiusL = 24.0;
+  final double radiusS = 8.0;
+  final double radiusM = 16.0;
+  final double raduisMML = 18.0;
+  final double raduisML = 20.0;
+  final double radiusL = 24.0;
 
   // Icon sizes
-  static const double iconS = 16.0;
-  static const double iconM = 24.0;
-  static const double iconL = 32.0;
+  final double iconS = 16.0;
+  final double iconM = 24.0;
+  final double iconL = 32.0;
 
   // Elevation
-  static const double cardElevation = 4.0;
+  final double cardElevation = 4.0;
+
+  //SizedBox
+  final double sizedBoxS = 6.0;
 }
