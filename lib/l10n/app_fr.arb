@@ -1,0 +1,17 @@
+{
+  "takeAppointment": "Prendre rendez-vous",
+  "doctorDetails": "Détails du médecin",
+  "noFullName": "Nom non disponible",
+  "findDoctor": "Trouver un médecin",
+  "specialities": "Spécialités",
+  "seeAll": "Tout voir",
+  "recommendedDoctors": "Médecins recommandés",
+  "searchHint": "Rechercher un médecin, spécialité...",
+  "noSpeciality": "Spécialité non disponible",
+  "noAddress": "Adresse non disponible",
+  "homePage": "Accueil",
+  "doctors": "Médecins",
+  "agenda": "Agenda",
+  "settings": "Paramètres",
+  "doctorLoadingError": "Une erreur est survenue lors du chargement des médecins. Veuillez réessayer plus tard."
+}

@@ -1,0 +1,17 @@
+{
+  "takeAppointment": "Book appointment",
+  "doctorDetails": "Doctor details",
+  "noFullName": "No Full Name",
+  "findDoctor": "Find a doctor",
+  "specialities": "Specialities",
+  "seeAll": "See all",
+  "recommendedDoctors": "Recommended doctors",
+  "searchHint": "Search for a doctor, speciality...",
+  "noSpeciality": "No Speciality",
+  "noAddress": "No Address",
+  "homePage": "Home",
+  "doctors": "Doctors",
+  "agenda": "Agenda",
+  "settings": "Settings",
+  "doctorLoadingError": "An error occurred while loading doctors. Please try again later."
+}
